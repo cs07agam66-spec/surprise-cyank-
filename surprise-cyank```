@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kejutan Tanggal Jadian</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(#0a0a15, #1a1a2e);
+            color: white;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 25px;
+            border-radius: 15px;
+            width: 350px;
+            margin: 60px auto;
+            backdrop-filter: blur(6px);
+        }
+        button {
+            margin-top: 15px;
+            padding: 10px 18px;
+            font-size: 16px;
+            border-radius: 10px;
+            border: none;
+            background: #ff4d88;
+            color: white;
+            cursor: pointer;
+        }
+        button:hover { background: #e63972; }
+
+        .heart {
+            position: fixed;
+            top: -10px;
+            color: pink;
+            animation: fall linear infinite;
+            font-size: 20px;
+        }
+        @keyframes fall {
+            to { transform: translateY(110vh); opacity: 0; }
+        }
+
+        .popup {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+        }
+        .popup-box {
+            background: white;
+            color: #333;
+            padding: 25px;
+            border-radius: 15px;
+            width: 300px;
+            animation: pop 0.3s ease;
+            text-align: center;
+        }
+        @keyframes pop {
+            from { transform: scale(0.6); }
+            to { transform: scale(1); }
+        }
+
+        .foto {
+            width: 200px;
+            border-radius: 15px;
+            margin-top: 20px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<audio id="music" src="musik.mp3" loop></audio>
+
+<div class="container">
+    <h2>✨ Kejutan Hari Jadian ✨</h2>
+    <p>Hari jadian kita:</p>
+    <h3>06 Oktober 2025 ❤️</h3>
+
+    <button onclick="tampilkanKejutan()">Lihat Kejutan 💖</button>
+
+    <p id="message"></p>
+    <img id="foto" class="foto" src="foto.jpg">
+</div>
+
+<div class="popup" id="popup">
+    <div class="popup-box">
+        <h3>🎁 Kejutan Buat Kamu 🎁</h3>
+        <p>Aku bersyukur banget bisa sama kamu ❤️</p>
+        <button onclick="tutupPopup()">Tutup</button>
+    </div>
+</div>
+
+<script>
+function tampilkanKejutan() {
+    const pesan = document.getElementById("message");
+    const foto = document.getElementById("foto");
+    const music = document.getElementById("music");
+
+    pesan.style.display = "block";
+    pesan.innerHTML = 
+        `Selamat merayakan hari jadian kita ❤️<br>
+        Kita sudah bersama sejak <b>06 Oktober 2025</b>.<br>
+        Makasih sudah tetap tinggal sama aku. Aku sayang kamu! 💞`;
+
+    foto.style.display = "block";
+    music.play();
+    document.getElementById("popup").style.display = "flex";
+    setInterval(buatHati, 500);
+}
+
+function buatHati() {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "💖";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.animationDuration = (2 + Math.random() * 3) + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => heart.remove(), 5000);
+}
+
+function tutupPopup() {
+    document.getElementById("popup").style.display = "none";
+}
+</script>
+
+</body>
+</html>
